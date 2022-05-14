@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:common="clr-namespace:SmartHome.Gui.Components.Common"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="480"
+             x:Class="SmartHome.Gui.Layouts.DefaultView"
+             PointerPressed="OnPointerPressed" PointerReleased="OnPointerReleased">
+    <Grid Width="800" Height="480" RowDefinitions="50, 430">
+        <common:Header Width="800" Height="50" HorizontalAlignment="Left" DataContext="{Binding Header}" />
+        <Carousel Grid.Row="1" Name="Carousel" Width="800" Height="430" Items="{Binding Views}" IsVirtualized="False">
+            <Carousel.PageTransition>
+                <PageSlide Duration=".25" Orientation="Horizontal"></PageSlide>
+            </Carousel.PageTransition>
+        </Carousel>
+    </Grid>
+</UserControl>

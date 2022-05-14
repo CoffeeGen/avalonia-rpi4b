@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="50"
+             x:Class="SmartHome.Gui.Components.Common.Header">
+    
+    <UserControl.Styles>
+        <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Padding" Value="0" />
+            <!-- <Setter Property="Width" Value="100" /> -->
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style Selector="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Regular" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+    </UserControl.Styles>
+    <Grid ColumnDefinitions="100, 700" Width="800" Height="50" Background="{DynamicResource ColorBlack}">
+        <Canvas Background="{DynamicResource ColorRed}" Width="100" Height="50">
+            <Path Canvas.Left="37.5" Canvas.Top="12.5" Fill="White" Data="M 24.601562 11.390625 L 20.808594 7.597656 L 20.808594 3.21875 C 20.808594 2.425781 20.167969 1.785156 19.375 1.785156 C 18.582031 1.785156 17.941406 2.425781 17.941406 3.21875 L 17.941406 4.730469 L 15.117188 1.90625 C 13.722656 0.511719 11.292969 0.511719 9.902344 1.910156 L 0.417969 11.390625 C -0.140625 11.949219 -0.140625 12.859375 0.417969 13.417969 C 0.980469 13.976562 1.890625 13.976562 2.449219 13.417969 L 11.929688 3.9375 C 12.238281 3.628906 12.78125 3.628906 13.089844 3.9375 L 22.570312 13.417969 C 22.851562 13.699219 23.21875 13.835938 23.585938 13.835938 C 23.953125 13.835938 24.320312 13.699219 24.601562 13.417969 C 25.160156 12.859375 25.160156 11.949219 24.601562 11.390625 Z M 24.601562 11.390625 "/>
+            <Path Canvas.Left="37.5" Canvas.Top="12.5" Fill="White" Data="M 13.007812 6.660156 C 12.734375 6.382812 12.285156 6.382812 12.011719 6.660156 L 3.671875 14.996094 C 3.539062 15.128906 3.464844 15.308594 3.464844 15.496094 L 3.464844 21.574219 C 3.464844 23.003906 4.621094 24.160156 6.050781 24.160156 L 10.179688 24.160156 L 10.179688 17.765625 L 14.839844 17.765625 L 14.839844 24.160156 L 18.96875 24.160156 C 20.394531 24.160156 21.554688 23.003906 21.554688 21.574219 L 21.554688 15.496094 C 21.554688 15.308594 21.480469 15.128906 21.347656 14.996094 Z M 13.007812 6.660156 "/>
+        </Canvas>
+        
+        <Grid Grid.Column="1" ColumnDefinitions="480, 200, 20" Width="700" Height="100">
+            <TextBlock HorizontalAlignment="Left" Grid.Column="1" Text="{Binding CurrentDateTime}" />
+        </Grid>
+    </Grid>
+    
+</UserControl>
