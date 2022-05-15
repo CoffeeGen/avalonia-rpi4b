@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -18,12 +20,13 @@ public partial class DefaultView : UserControl
     public DefaultView( )
     {
         InitializeComponent( );
-        
-        Touch.OnSwipe += TouchOnSwipe;
+        Touch.Swipe += TouchOnSwipe;
     }
 
     private void TouchOnSwipe( ESwipeDirection direction )
     {
+        int oldViewId = _carousel.SelectedIndex;
+        
         switch( direction )
         {
             case ESwipeDirection.Left:
@@ -34,6 +37,11 @@ public partial class DefaultView : UserControl
                 _carousel.Next();
                 break;
         }
+
+        int newViewId = _carousel.SelectedIndex;
+
+        if( oldViewId != newViewId )
+            View.OnChange( oldViewId, Default.Instance.Views[ oldViewId ], newViewId, Default.Instance.Views[ newViewId ] );
     }
 
     private void InitializeComponent( )
@@ -55,14 +63,14 @@ public partial class DefaultView : UserControl
         Point pointerEnd = e.GetPosition( null );
 
         if( _pointerStart?.X < pointerEnd.X - 75 )
-            Touch.Swipe( ESwipeDirection.Left );
+            Touch.OnSwipe( ESwipeDirection.Left );
         else if( _pointerStart?.X > pointerEnd.X + 75 )
-            Touch.Swipe( ESwipeDirection.Right );
+            Touch.OnSwipe( ESwipeDirection.Right );
         
         if( _pointerStart?.Y < pointerEnd.Y - 75 )
-            Touch.Swipe( ESwipeDirection.Down );
+            Touch.OnSwipe( ESwipeDirection.Down );
         else if( _pointerStart?.Y > pointerEnd.Y - 75 )
-            Touch.Swipe( ESwipeDirection.Up );
+            Touch.OnSwipe( ESwipeDirection.Up );
 
         _pointerStart = null;
     }

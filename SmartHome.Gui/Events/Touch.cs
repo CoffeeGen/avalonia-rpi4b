@@ -14,11 +14,11 @@ public static class Touch
 
     public delegate void SwipeDelegate( ESwipeDirection direction );
 
-    public static event SwipeDelegate OnSwipe;
+    public static event SwipeDelegate Swipe;
 
-    public static void Swipe( ESwipeDirection direction )
+    public static void OnSwipe( ESwipeDirection direction )
     {
-        OnSwipe.Invoke( direction );
+        Swipe.Invoke( direction );
     }
     #endregion
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using Avalonia.Controls;
 using ReactiveUI;
 using SmartHome.Gui.Components.Common;
@@ -36,6 +37,10 @@ public class Default : ModelBase
         get => _views;
         set => this.RaiseAndSetIfChanged(ref _views, value);
     }
+
+    private int _activeViewId = 0;
+
+    public ModelBase ActiveView => Views[ _activeViewId ];
     
     private MHeader _header;
 
@@ -56,6 +61,12 @@ public class Default : ModelBase
         };
         
         Header = new MHeader( );
+        
+        View.Change += ViewOnChange;
     }
-    
+
+    private void ViewOnChange( int oldViewId, ModelBase oldView, int newViewId, ModelBase newView )
+    {
+        Debug.WriteLine( $"old: { oldViewId }, new: { newViewId }" );
+    }
 }
