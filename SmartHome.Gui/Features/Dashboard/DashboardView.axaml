@@ -29,6 +29,11 @@
             <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Turn off the device</Label>
             <Button Click="Shutdown_OnClock" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Background="{DynamicResource ColorRed}">Shutdown</Button>
         </Grid>
+        <Grid Grid.Column="1" Grid.Row="7" ColumnDefinitions="400, 200">
+            <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Screen Brightness</Label>
+            <Slider SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True" TickPlacement="None" Grid.Column="1" Minimum="25" Maximum="255" Value="{Binding Path=BacklightBrightness, Mode=TwoWay}" />
+            <!-- <Button Click="Shutdown_OnClock" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Background="{DynamicResource ColorRed}">Shutdown</Button> -->
+        </Grid>
     </Grid>
     
 </UserControl>

@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using ReactiveUI;
 using SmartHome.Core.Gpio;
@@ -16,6 +18,17 @@ public class Dashboard : ModelBase
         get => _lightsState;
         set => this.RaiseAndSetIfChanged(ref _lightsState, value);
     }
+    
+    private int _backlightBrightness;
+    public int BacklightBrightness
+    {
+        get => _backlightBrightness;
+        set
+        {
+            Backlight.SetBrightness( value );
+            this.RaiseAndSetIfChanged( ref _backlightBrightness, value );
+        }
+    }
 
     public Dashboard( )
     {
@@ -25,11 +38,12 @@ public class Dashboard : ModelBase
     public void ToggleLights_OnClick( )
     {
         Lights.Toggle( );
-        Update( );
+        _ = Update( );
     }
 
-    private void Update( )
+    private async Task Update( )
     {
         LightsState = Lights.State ? "Turn Off" : "Turn On";
+        BacklightBrightness = await Backlight.GetBrightness( );
     }
 }
