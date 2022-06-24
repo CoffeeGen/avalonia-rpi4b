@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="430"
+             Width="800" Height="430"
+             Background="{DynamicResource ColorDarkGrey}"
+             x:Class="SmartHome.Gui.Features.Clock.ClockView">
+    <Canvas Width="800" Height="430">
+        <Ellipse 
+            Canvas.Top="65" 
+            Canvas.Left="250" 
+            Width="300" 
+            Height="300" 
+            StrokeLineCap="Square" 
+            StrokeDashArray="0,6" 
+            StrokeDashOffset="0" 
+            Stroke="Red" 
+            StrokeThickness="3" 
+        />
+        
+        <Polyline Stroke="Blue" StrokeThickness="2" Points="400, 215, 400, 65" />
+        <Polyline Stroke="Blue" StrokeThickness="2" Points="400, 215, 550, 215" />
+        <Polyline Stroke="Blue" StrokeThickness="2" Points="400, 215, 400, 365" />
+        <Polyline Stroke="Blue" StrokeThickness="2" Points="400, 215, 250, 215" />
+        <!-- <Rectangle Width="50" Height="430" Canvas.Left="375" Fill="Blue" /> -->
+        <!-- <Rectangle Width="800" Height="50" Canvas.Top="190" Fill="Blue" /> -->
+        <!-- <Polygon Stroke="Green" StrokeThickness="5" Points="250, 65, 290, 300" /> -->
+    </Canvas>
+</UserControl>

@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using SmartHome.Core.Gpio;
 using SmartHome.Gui.Events;
 
 namespace SmartHome.Gui.Layouts;
@@ -16,11 +19,16 @@ public partial class DefaultView : UserControl
     private Carousel _carousel;
 
     private Point? _pointerStart;
-    
+
+    private CancellationTokenSource? _cts;
+    private int _screenTimeoutMs = 5000;
+
     public DefaultView( )
     {
         InitializeComponent( );
         Touch.Swipe += TouchOnSwipe;
+
+        // ScreenTimeout( );
     }
 
     private void TouchOnSwipe( ESwipeDirection direction )
@@ -50,8 +58,31 @@ public partial class DefaultView : UserControl
         _carousel = this.FindControl<Carousel>("Carousel");
     }
 
-    private void OnPointerPressed( object? sender, PointerPressedEventArgs e )
+    private Task ScreenTimeout( )
     {
+        _cts = new CancellationTokenSource( );
+
+        return Task.Run( async ( ) =>
+        {
+            await Task.Delay( _screenTimeoutMs, _cts.Token );
+
+            if( _cts.IsCancellationRequested )
+                return;
+            
+            Backlight.Off( );
+
+        }, _cts.Token );
+    }
+    
+    private async void OnPointerPressed( object? sender, PointerPressedEventArgs e )
+    {
+        if( !await Backlight.State( ) )
+        {
+            _cts?.Cancel();
+            // _ = ScreenTimeout( );
+            // Backlight.On( );
+        }
+        
         _pointerStart = e.GetPosition( null );
     }
 

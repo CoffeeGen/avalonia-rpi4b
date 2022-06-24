@@ -9,7 +9,6 @@
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     </PropertyGroup>
     <ItemGroup>
-        <Folder Include="Components" />
         <Folder Include="Features\Init" />
         <Folder Include="Models\" />
         <Folder Include="Resources\" />
@@ -39,5 +38,14 @@
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\SmartHome.Core\SmartHome.Core.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Update="Features\Shutdown\ShutdownView.axaml.cs">
+        <DependentUpon>DashboardView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+    <ItemGroup>
+      <AdditionalFiles Include="Features\Shutdown\ShutdownView.axaml" />
     </ItemGroup>
 </Project>
